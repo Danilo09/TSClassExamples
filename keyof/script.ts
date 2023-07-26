@@ -56,10 +56,8 @@ async function handleData() {
 
 handleData()
 
-function CheckInterface<Interface>(
-    obj: unknown,
-    ...keys: Array<keyof Interface>
-): obj is Interface {
+function CheckInterface<Interface>(obj: unknown, ...keys: Array<keyof Interface>): obj is Interface 
+{
     if (obj && 
         typeof obj === 'object' &&
         keys.filter((key) => key in obj).length === keys.length
