@@ -1,4 +1,5 @@
 import moedaParaNumero from "./moedaParaNumero.js";
+import stringToDate from "./stringToDate.js";
 
 type TransacaoPagamento =  "Boleto" | "Cartão de Crédito"
 type TransacaoStatus = "Paga" | "Recusada pela operadora de cartão" | "Aguardando pagamento" | "Estornada" 
@@ -17,7 +18,7 @@ export interface TransacaoAPI {
 export interface Transacao {
     nome: string;
     id: number;
-    data: string;
+    data: Date;
     status: TransacaoStatus;
     email: string;
     moeda: string;
@@ -27,11 +28,11 @@ export interface Transacao {
 
 }
 
-export default function normalizarTransacao(transacao: TransacaoAPI) {
+export default function normalizarTransacao(transacao: TransacaoAPI): Transacao {
     return {
         nome: transacao.Nome,
         id: transacao.ID,
-        data: transacao.Data,
+        data: stringToDate(transacao.Data),
         status: transacao.Status,
         email: transacao.Email,
         moeda: transacao["Valor (R$)"],
